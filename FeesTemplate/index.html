@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='UTF-8' />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+    <title>Document</title>
+    <!-- ! Bootstrap link and icons -->
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css'>
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css' />
+</head>
+
+<body>
+    <!-- ! Bootstrap link , jquery  -->
+    <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js'></script>
+    <script></script>
+</body>
+
+</html>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Receipt</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            width: 100%;
+        }
+
+        .receipt-body {
+            min-height: 48%;
+            min-width: 100%;
+            border: 1px solid black;
+        }
+
+        .receipt-header {
+            width: 100%;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .receipt-info {
+            width: 100%;
+            height: 130px;
+            display: flex;
+        }
+
+        .receipt-info-left {
+            width: 50%;
+            height: 100%;
+        }
+
+        .receipt-info-right {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 50%;
+            height: 100%;
+        }
+
+        .border {
+            border: 1px solid black;
+        }
+
+        .border-left {
+            border-left: 1px solid black !important;
+        }
+
+        .border-right {
+            border-right: 1px solid black !important;
+        }
+
+        .border-bottom {
+            border-bottom: 1px solid black !important;
+        }
+
+        .border-top {
+            border-top: 1px solid black !important;
+        }
+
+        .detail-info {
+            display: flex;
+            width: 100%;
+            height: 300px;
+        }
+
+        .receipt-signature {
+            display: flex;
+            width: 100%;
+            height: 100px;
+        }
+
+        .display-block {
+            display: block;
+        }
+
+        .img-and-info {
+            display: flex;
+            margin-top: 20px;
+            padding: 0 10px;
+            width: 100%;
+            height: 100%;
+        }
+
+        .school-name {
+            text-align: center;
+            width: 100%;
+            font-size: 15px;
+            font-weight: bold;
+        }
+
+        .img-info-left {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 20%;
+            height: 70%;
+
+
+        }
+
+        .img-info-right {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            width: 80%;
+            height: 70%;
+            font-size: 12px;
+        }
+
+        .receipt-fee-heading {
+            color: orange;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .detail-info-left {
+            text-align: center;
+            width: 50%;
+            height: 100%;
+        }
+
+        .detail-info-right {
+            width: 50%;
+            height: 100%;
+        }
+
+        .detail-info-header {
+            width: 100%;
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            border: 1px solid black;
+            padding: 3px;
+            text-align: left;
+        }
+
+        .blue-bg {
+            background-color: #4aa5ff;
+        }
+
+        .white-color {
+            color: white;
+        }
+
+        .student-info-section {
+            margin-top: 10px;
+            width: 100%;
+            display: block;
+            min-height: calc(100% - 33px);
+        }
+
+        .info-tag {
+            width: 100%;
+            display: flex;
+        }
+
+        .info-tag-label {
+            padding-left: 10px;
+            font-weight: bold;
+            width: 30%;
+            text-align: left;
+        }
+
+        .info-tag-value {
+            width: 70%;
+            text-align: left;
+        }
+
+        .payment-info-container {
+            font-weight: bold;
+        }
+
+        .payment-mode-section {
+            width: 100%;
+        }
+
+        .payment-mode-section {
+            display: flex;
+        }
+
+        .payment-mode-1 {
+            padding: 0 10px;
+        }
+
+        .payment-mode-2 {
+            padding: 0 10px;
+        }
+
+        .payment-mode-3 {
+            text-align: left;
+            width: 100%;
+            padding-left: 10px;
+            background-color: #c0c0c0;
+        }
+
+        .payment-mode-4 {
+            padding-right: 10px;
+            background-color: #c0c0c0;
+        }
+
+        .receipt-signature-left {
+            display: flex;
+            justify-content: end;
+            align-items: center;
+            padding-right: 10px;
+            width: 50%;
+            height: 100%;
+        }
+
+        .receipt-signature-right {
+            display: flex;
+            justify-content: end;
+            align-items: center;
+            width: 50%;
+            height: 100%;
+        }
+
+        .box-signature {
+            border: 1px solid black;
+            border-radius: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 200px;
+            height: 80px;
+        }
+
+        @media print {}
+    </style>
+</head>
+
+<body>
+
+    <div class="receipt-body">
+        <div class="receipt-header border-bottom">
+            <span class="display-block">SHRI PARSWANATH BRAHMACHARY ASHRAM (JAIN GURUKUL)</span>
+            <span class="display-block">TRUST REG NO -3016/(B) REG SOCIETIES ACT - XXI OF 1860 N0-33/1944-45</span>
+        </div>
+        <div class="receipt-info border-bottom">
+            <div class="receipt-info-left">
+                <div class="img-and-info">
+                    <div class="img-info-left">
+                        <img width="100%" height="100%" src="https://www.sfc.ac.in/images/college-logo-page.png"
+                            alt="college logo">
+                    </div>
+                    <div class="img-info-right">
+                        <span class="display-block school-name">
+                            Gyanodaya S M V M Higher Sr. School, Khurai
+                        </span>
+                        <span class="display-block"> Gurukul Campus,Near Railway Station,Khurai, Sagar, M. P.</span>
+                        <span class="display-block"> TAN NO: JBPS08931G, Contact No:9826829441,8461004701</span>
+                        <span class="display-block"> E-Mail: gyanodayaprincipal@gmail.com</span>
+                    </div>
+                </div>
+            </div>
+            <div class="receipt-info-right border-left">
+                <span class="display-block receipt-fee-heading">Fee Receipt</span>
+            </div>
+        </div>
+        <div class="detail-info border-bottom">
+            <div class="detail-info-left border-right">
+                <span class="display-block detail-info-header blue-bg white-color">
+                    FEE RECEIPT
+                </span>
+
+                <div class="student-info-section">
+                    <div class="info-tag">
+                        <span class="display-block info-tag-label">Parent's Name</span>
+                        <span class="display-block info-tag-value"><b>:</b>RAJABAHI SINGH DANGI & BHARTI</span>
+                    </div>
+                    <div class="info-tag">
+                        <span class="display-block info-tag-label">Name</span>
+                        <span class="display-block info-tag-value"><b>:</b> ABHISHEK SINGH DANGI</span>
+                    </div>
+                    <div class="info-tag">
+                        <span class="display-block info-tag-label">Adm No</span>
+                        <span class="display-block info-tag-value"><b>:</b> GY343</span>
+                    </div>
+                    <div class="info-tag">
+                        <span class="display-block info-tag-label">Class</span>
+                        <span class="display-block info-tag-value"><b>:</b> VI - B</span>
+                    </div>
+                    <div class="info-tag">
+                        <span class="display-block info-tag-label">Mobile No </span>
+                        <span class="display-block info-tag-value"><b>:</b> 9926703783, 9977991720 </span>
+                    </div>
+                    <div class="info-tag ">
+                        <span class="display-block info-tag-label">Address</span>
+                        <span class="display-block info-tag-value"><b>:</b>GADOLA NAKA KHURAI DISTT SAGAR MP
+                            KHURAI</span>
+                    </div>
+
+                    <div class="payment-info-container blue-bg white-color border-top border-bottom">
+                        PAY MODE INFORMATION
+                    </div>
+
+                    <div class="payment-mode-section">
+                        <span class="payment-mode-1">Payment Mode</span>
+                        <span class="payment-mode-2">Cash</span>
+                    </div>
+
+                    <div class="payment-mode-section" style="margin-top: 15px;">
+                        <span class="payment-mode-3">Total</span>
+                        <span class="payment-mode-4">9000</span>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="detail-info-right">
+                <table>
+                    <thead class="blue-color white-color">
+                        <th style="border-top: none; border-left:none;" class="blue-bg white-color">S.No</th>
+                        <th style="border-top: none;" class="blue-bg white-color">Description</th>
+                        <th style="border-top: none;" class="blue-bg white-color">Due</th>
+                        <th style="border-top: none;" class="blue-bg white-color">Con</th>
+                        <th style="border-top: none;" class="blue-bg white-color">Paid</th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="border-left:none;">1</td>
+                            <td>Discount Amount</td>
+                            <td>1</td>
+                            <td>1200</td>
+                            <td>900</td>
+                        </tr>
+                        <tr>
+                            <td style="border-left:none;">1</td>
+                            <td>Discount Amount</td>
+                            <td>1</td>
+                            <td>1200</td>
+                            <td>900</td>
+                        </tr>
+                        <tr>
+                            <td style="border-left:none;">1</td>
+                            <td>Discount Amount</td>
+                            <td>1</td>
+                            <td>1200</td>
+                            <td>900</td>
+                        </tr>
+                        <tr>
+                            <td style="border-left:none;">1</td>
+                            <td>Discount Amount</td>
+                            <td>1</td>
+                            <td>1200</td>
+                            <td>900</td>
+                        </tr>
+                        <tr>
+                            <td style="border-left:none;">1</td>
+                            <td>Discount Amount</td>
+                            <td>1</td>
+                            <td>1200</td>
+                            <td>900</td>
+                        </tr>
+
+                        <tr>
+                            <td colspan="2" style="text-align: right; padding-right: 100px; border-left:none ;">
+                                <b>Total Amount</b>
+                            </td>
+                            <td>1200</td>
+                            <td>900</td>
+                            <td>1</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <table style="margin-top: 20px;">
+                    <thead>
+                        <th class="blue-bg white-color" style="border-left: none;">RPT</th>
+                        <th class="blue-bg white-color">M</th>
+                        <th class="blue-bg white-color">DS</th>
+                        <th class="blue-bg white-color">AT</th>
+                        <th class="blue-bg white-color">PD</th>
+                        <th class="blue-bg white-color">BL</th>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td style="border-left: none;">Receipt No</td>
+                            <td>Demo</td>
+                            <td>Demo</td>
+                            <td>Demo</td>
+                            <td>Demo</td>
+                            <td></td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="receipt-signature">
+            <div class="receipt-signature-left border-right ">
+                <div class="box-signature ">Signature</div>
+            </div>
+            <div class="receipt-signature-right">
+                <div class=""></div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <hr style="margin: 10px 0; border: 1px dashed black;">
+
+
+
+    <div class="receipt-body">
+        <div class="receipt-header border-bottom">
+            <span class="display-block">SHRI PARSWANATH BRAHMACHARY ASHRAM (JAIN GURUKUL)</span>
+            <span class="display-block">TRUST REG NO -3016/(B) REG SOCIETIES ACT - XXI OF 1860 N0-33/1944-45</span>
+        </div>
+        <div class="receipt-info border-bottom">
+            <div class="receipt-info-left">
+                <div class="img-and-info">
+                    <div class="img-info-left">
+                        <img width="100%" height="100%" src="https://www.sfc.ac.in/images/college-logo-page.png"
+                            alt="college logo">
+                    </div>
+                    <div class="img-info-right">
+                        <span class="display-block school-name">
+                            Gyanodaya S M V M Higher Sr. School, Khurai
+                        </span>
+                        <span class="display-block"> Gurukul Campus,Near Railway Station,Khurai, Sagar, M. P.</span>
+                        <span class="display-block"> TAN NO: JBPS08931G, Contact No:9826829441,8461004701</span>
+                        <span class="display-block"> E-Mail: gyanodayaprincipal@gmail.com</span>
+                    </div>
+                </div>
+            </div>
+            <div class="receipt-info-right border-left">
+                <span class="display-block receipt-fee-heading">Fee Receipt</span>
+            </div>
+        </div>
+        <div class="detail-info border-bottom">
+            <div class="detail-info-left border-right">
+                <span class="display-block detail-info-header blue-bg white-color">
+                    FEE RECEIPT
+                </span>
+
+                <div class="student-info-section">
+                    <div class="info-tag">
+                        <span class="display-block info-tag-label">Parent's Name</span>
+                        <span class="display-block info-tag-value"><b>:</b>RAJABAHI SINGH DANGI & BHARTI</span>
+                    </div>
+                    <div class="info-tag">
+                        <span class="display-block info-tag-label">Name</span>
+                        <span class="display-block info-tag-value"><b>:</b> ABHISHEK SINGH DANGI</span>
+                    </div>
+                    <div class="info-tag">
+                        <span class="display-block info-tag-label">Adm No</span>
+                        <span class="display-block info-tag-value"><b>:</b> GY343</span>
+                    </div>
+                    <div class="info-tag">
+                        <span class="display-block info-tag-label">Class</span>
+                        <span class="display-block info-tag-value"><b>:</b> VI - B</span>
+                    </div>
+                    <div class="info-tag">
+                        <span class="display-block info-tag-label">Mobile No </span>
+                        <span class="display-block info-tag-value"><b>:</b> 9926703783, 9977991720 </span>
+                    </div>
+                    <div class="info-tag ">
+                        <span class="display-block info-tag-label">Address</span>
+                        <span class="display-block info-tag-value"><b>:</b>GADOLA NAKA KHURAI DISTT SAGAR MP
+                            KHURAI</span>
+                    </div>
+
+                    <div class="payment-info-container blue-bg white-color border-top border-bottom">
+                        PAY MODE INFORMATION
+                    </div>
+
+                    <div class="payment-mode-section">
+                        <span class="payment-mode-1">Payment Mode</span>
+                        <span class="payment-mode-2">Cash</span>
+                    </div>
+
+                    <div class="payment-mode-section" style="margin-top: 15px;">
+                        <span class="payment-mode-3">Total</span>
+                        <span class="payment-mode-4">9000</span>
+                    </div>
+
+                </div>
+
+            </div>
+            
+            <div class="detail-info-right">
+                <table>
+                    <thead class="blue-color white-color">
+                        <th style="border-top: none; border-left:none;" class="blue-bg white-color">S.No</th>
+                        <th style="border-top: none;" class="blue-bg white-color">Description</th>
+                        <th style="border-top: none;" class="blue-bg white-color">Due</th>
+                        <th style="border-top: none;" class="blue-bg white-color">Con</th>
+                        <th style="border-top: none;" class="blue-bg white-color">Paid</th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="border-left:none;">1</td>
+                            <td>Discount Amount</td>
+                            <td>1</td>
+                            <td>1200</td>
+                            <td>900</td>
+                        </tr>
+                        <tr>
+                            <td style="border-left:none;">1</td>
+                            <td>Discount Amount</td>
+                            <td>1</td>
+                            <td>1200</td>
+                            <td>900</td>
+                        </tr>
+                        <tr>
+                            <td style="border-left:none;">1</td>
+                            <td>Discount Amount</td>
+                            <td>1</td>
+                            <td>1200</td>
+                            <td>900</td>
+                        </tr>
+                        <tr>
+                            <td style="border-left:none;">1</td>
+                            <td>Discount Amount</td>
+                            <td>1</td>
+                            <td>1200</td>
+                            <td>900</td>
+                        </tr>
+                        <tr>
+                            <td style="border-left:none;">1</td>
+                            <td>Discount Amount</td>
+                            <td>1</td>
+                            <td>1200</td>
+                            <td>900</td>
+                        </tr>
+
+                        <tr>
+                            <td colspan="2" style="text-align: right; padding-right: 100px; border-left:none ;">
+                                <b>Total Amount</b>
+                            </td>
+                            <td>1200</td>
+                            <td>900</td>
+                            <td>1</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <table style="margin-top: 20px;">
+                    <thead>
+                        <th class="blue-bg white-color" style="border-left: none;">RPT</th>
+                        <th class="blue-bg white-color">M</th>
+                        <th class="blue-bg white-color">DS</th>
+                        <th class="blue-bg white-color">AT</th>
+                        <th class="blue-bg white-color">PD</th>
+                        <th class="blue-bg white-color">BL</th>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td style="border-left: none;">Receipt No</td>
+                            <td>Demo</td>
+                            <td>Demo</td>
+                            <td>Demo</td>
+                            <td>Demo</td>
+                            <td></td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="receipt-signature">
+            <div class="receipt-signature-left border-right ">
+                <div class="box-signature ">Signature</div>
+            </div>
+            <div class="receipt-signature-right">
+                <div class=""></div>
+            </div>
+        </div>
+    </div>  
+
+
+
+</body>
+
+</html>
